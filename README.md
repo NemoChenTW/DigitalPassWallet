@@ -7,7 +7,7 @@ Please implement the feature in app that provide a wallet which is having the fo
 1. User can add two different types of pass (Day or Hour) with a specified number (ex: 7 days pass or 5 hours pass ... etc.).
 2. User can view all added passes in a list.
 3. User can activate each added pass.
-4. User can see the detail information (pass status, pass insertion data/time, pass activation and expiration data/time fi it is activated) by clicking pass from the list above.
+4. User can see the detail information (pass status, pass insertion data/time, pass activation and expiration data/time if it is activated) by clicking pass from the list above.
 
 (Bonus):
 - Write Unit Test (and/or) UI Test for your work to make it more reliable when you need to publish it.

@@ -21,7 +21,7 @@ data class StreamPass(val serialNumber: String, val duration: Long) {
         return isActivated() && expirationTime < System.currentTimeMillis()
     }
 
-    private fun isActivated(): Boolean {
+    fun isActivated(): Boolean {
         return activeTime != Long.MIN_VALUE
     }
 

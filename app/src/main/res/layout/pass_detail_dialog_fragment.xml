@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="viewModel"
+            type="com.nemochen.digitalpasswallet.ui.main.PassDetailDialogViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical|center_horizontal"
+        android:background="@android:color/background_light">
+
+        <TextView
+            android:id="@+id/title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            android:text="Pass Detail"/>
+
+        <TextView
+            android:id="@+id/serial_number"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/title"
+            app:layout_constraintLeft_toLeftOf="parent"
+            android:text="@{`Serial number: ` + viewModel.serialNumber}"/>
+
+        <TextView
+            android:id="@+id/insertion_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/serial_number"
+            app:layout_constraintLeft_toLeftOf="parent"
+            android:text="@{`Insertion data: ` + viewModel.insertionDateString}"/>
+
+        <TextView
+            android:id="@+id/pass_status"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/insertion_date"
+            app:layout_constraintLeft_toLeftOf="parent"
+            android:text="@{`Pass Status: ` + viewModel.passStatusString}"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

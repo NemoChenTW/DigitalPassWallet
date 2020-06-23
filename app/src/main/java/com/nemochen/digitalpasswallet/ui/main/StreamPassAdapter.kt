@@ -1,6 +1,7 @@
 package com.nemochen.digitalpasswallet.ui.main
 
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.DiffUtil
@@ -22,6 +23,13 @@ class StreamPassAdapter: ListAdapter<StreamPass, RecyclerView.ViewHolder>(DiffCa
     }
 
     class ViewHolder(var binding: StreampassElementBinding):RecyclerView.ViewHolder(binding.root) {
+        init {
+            binding.streampassCardview.setOnClickListener(object : View.OnClickListener{
+                override fun onClick(v: View?) {
+
+                }
+            })
+        }
         fun bind(streamPass: StreamPass) {
             binding.streampassElement = streamPass
             binding.executePendingBindings()

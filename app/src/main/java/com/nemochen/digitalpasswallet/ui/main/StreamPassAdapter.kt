@@ -65,12 +65,6 @@ class StreamPassAdapter: ListAdapter<StreamPass, RecyclerView.ViewHolder>(DiffCa
         }
     }
 
-    private fun isExpired(time: Long): Boolean {
-        return time < System.currentTimeMillis()
-    }
-
-
-
     @BindingAdapter("streamPassElements")
     fun bindRecyclerViewWithSteamPassList(recyclerView: RecyclerView, elementList: MutableList<StreamPass>) {
         elementList.let {
@@ -83,6 +77,29 @@ class StreamPassAdapter: ListAdapter<StreamPass, RecyclerView.ViewHolder>(DiffCa
                 }
             }
         }
+    }
+
+    fun activatePass(recyclerView: RecyclerView, list: MutableList<StreamPass>?, position: Int) {
+        list?.let {
+            recyclerView.adapter?.apply {
+                when (this) {
+                    is StreamPassAdapter -> {
+                        if (!isActivated(it[position])) {
+                            it[position].activate()
+                        }
+                        notifyItemChanged(position)
+                    }
+                }
+            }
+        }
+    }
+
+    private fun isActivated(streamPass: StreamPass): Boolean {
+        return streamPass.activeTime != Long.MIN_VALUE
+    }
+
+    private fun isExpired(time: Long): Boolean {
+        return time < System.currentTimeMillis()
     }
 
 }

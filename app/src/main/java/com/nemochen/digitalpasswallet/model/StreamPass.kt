@@ -7,4 +7,9 @@ data class StreamPass(val serialNumber: String, val duration: Long) {
 
     var durationDisplayString = ""
     var statusDisplayString = ""
+
+    fun activate() {
+        activeTime = System.currentTimeMillis()
+        expirationTime = activeTime + duration
+    }
 }

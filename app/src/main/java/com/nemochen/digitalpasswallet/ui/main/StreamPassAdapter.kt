@@ -79,4 +79,18 @@ class StreamPassAdapter: ListAdapter<StreamPass, RecyclerView.ViewHolder>(DiffCa
             }
         }
     }
+
+    fun addItem(recyclerView: RecyclerView, list: MutableList<StreamPass>?, position: Int, streamPass: StreamPass) {
+        list?.let {
+            recyclerView.adapter?.apply {
+                when (this) {
+                    is StreamPassAdapter -> {
+                        it.add(position, streamPass)
+
+                        notifyItemInserted(position)
+                    }
+                }
+            }
+        }
+    }
 }

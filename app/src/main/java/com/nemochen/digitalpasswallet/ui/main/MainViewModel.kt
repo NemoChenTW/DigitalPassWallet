@@ -9,10 +9,19 @@ import com.nemochen.digitalpasswallet.model.StreamPass
 class MainViewModel : ViewModel() {
 
     private val dataModel = DataModel()
+    val serialNumberSet: MutableSet<String> = mutableSetOf()
 
     val itemList: LiveData<MutableList<StreamPass>> = liveData {
         val list = dataModel.retrieveData() as MutableList<StreamPass>
         emit(list)
+    }
+
+    fun updateSerialNumberSet() {
+        itemList.value?.let {
+            for (item in itemList.value!!) {
+                serialNumberSet.add(item.serialNumber)
+            }
+        }
     }
 
 }

@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.ItemTouchHelper
@@ -21,6 +22,8 @@ class MainFragment : Fragment() {
     private lateinit var binding: MainFragmentBinding
     private lateinit var viewModel: MainViewModel
     private lateinit var itemTouchHelper: ItemTouchHelper
+
+    private val addPassDialogViewModel:AddPassDialogViewModel by activityViewModels()
 
     private var streamPassAdapter = StreamPassAdapter()
 
@@ -48,6 +51,12 @@ class MainFragment : Fragment() {
             this.attachToRecyclerView(binding.recyclerView)
         }
 
+        binding.addBtn.setOnClickListener(object : View.OnClickListener {
+            override fun onClick(v: View?) {
+                AddPassDialogFragment().show(parentFragmentManager, AddPassDialogFragment.TAG)
+            }
+        })
+
         return binding.root
     }
 
@@ -59,6 +68,14 @@ class MainFragment : Fragment() {
 
         viewModel.itemList.observe(viewLifecycleOwner, Observer {
             list -> streamPassAdapter.bindRecyclerViewWithSteamPassList(binding.recyclerView, list)
+            binding.viewModel?.updateSerialNumberSet()
+        })
+
+        addPassDialogViewModel.newStreamPass.observe(viewLifecycleOwner, Observer {
+            if (!binding.viewModel?.serialNumberSet!!.contains(it.serialNumber)) {
+                streamPassAdapter.addItem(binding.recyclerView, viewModel.itemList.value, viewModel.itemList.value?.size!!, it)
+                binding.viewModel?.updateSerialNumberSet()
+            }
         })
     }
 

@@ -11,7 +11,7 @@ import com.nemochen.digitalpasswallet.databinding.StreampassElementBinding
 import com.nemochen.digitalpasswallet.model.StreamPass
 import com.nemochen.digitalpasswallet.util.TimeDisplayUtil
 
-class StreamPassAdapter: ListAdapter<StreamPass, RecyclerView.ViewHolder>(DiffCallback) {
+class StreamPassAdapter(val itemClick: ItemClick<StreamPass>): ListAdapter<StreamPass, RecyclerView.ViewHolder>(DiffCallback) {
 
     companion object DiffCallback : DiffUtil.ItemCallback<StreamPass>() {
         override fun areItemsTheSame(oldItem: StreamPass, newItem: StreamPass): Boolean {
@@ -30,8 +30,9 @@ class StreamPassAdapter: ListAdapter<StreamPass, RecyclerView.ViewHolder>(DiffCa
                 }
             })
         }
-        fun bind(streamPass: StreamPass) {
+        fun bind(streamPass: StreamPass, itemClick: ItemClick<StreamPass>) {
             binding.streampassElement = streamPass
+            binding.itemClick = itemClick
             binding.executePendingBindings()
         }
     }
@@ -56,7 +57,7 @@ class StreamPassAdapter: ListAdapter<StreamPass, RecyclerView.ViewHolder>(DiffCa
 
                     statusDisplayString = getStatusDisplayString(this)
 
-                } as StreamPass)
+                } as StreamPass, itemClick)
             }
         }
     }

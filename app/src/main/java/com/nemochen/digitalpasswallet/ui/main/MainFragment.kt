@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.nemochen.digitalpasswallet.databinding.MainFragmentBinding
+import com.nemochen.digitalpasswallet.model.StreamPass
 
 class MainFragment : Fragment() {
 
@@ -25,7 +26,11 @@ class MainFragment : Fragment() {
 
     private val addPassDialogViewModel:AddPassDialogViewModel by activityViewModels()
 
-    private var streamPassAdapter = StreamPassAdapter()
+    private var streamPassAdapter = StreamPassAdapter(object : ItemClick<StreamPass> {
+        override fun onItemClicked(view: View, item: StreamPass) {
+            PassDetailDialogFragment(item).show(parentFragmentManager, PassDetailDialogFragment.TAG)
+        }
+    })
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View {

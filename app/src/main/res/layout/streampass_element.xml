@@ -7,6 +7,10 @@
         <variable
             name="streampassElement"
             type="com.nemochen.digitalpasswallet.model.StreamPass" />
+
+        <variable
+            name="itemClick"
+            type="com.nemochen.digitalpasswallet.ui.main.ItemClick" />
     </data>
 
     <androidx.cardview.widget.CardView
@@ -21,7 +25,8 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:onClick="@{(view)->itemClick.onItemClicked(view, streampassElement)}">
 
             <TextView
                 android:id="@+id/duration"

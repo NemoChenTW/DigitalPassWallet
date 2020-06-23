@@ -46,22 +46,10 @@ class StreamPassAdapter: ListAdapter<StreamPass, RecyclerView.ViewHolder>(DiffCa
                         durationDisplayString = TimeDisplayUtil.getDurationDisplayString(duration)
                     }
 
-                    statusDisplayString = getStatusDisplayString(activeTime, expirationTime)
+                    statusDisplayString = getStatusDisplayString(this)
 
                 } as StreamPass)
             }
-        }
-    }
-
-    private fun getStatusDisplayString(activeTime: Long, expirationTime: Long): String {
-        if (activeTime == Long.MIN_VALUE) {
-            return "Swipe to active"
-        }
-
-        return if (isExpired(expirationTime)) {
-            "Expired"
-        } else {
-            "Expired at: " + TimeDisplayUtil.dataTimeFormatter.format(expirationTime)
         }
     }
 
@@ -84,22 +72,11 @@ class StreamPassAdapter: ListAdapter<StreamPass, RecyclerView.ViewHolder>(DiffCa
             recyclerView.adapter?.apply {
                 when (this) {
                     is StreamPassAdapter -> {
-                        if (!isActivated(it[position])) {
-                            it[position].activate()
-                        }
+                        it[position].activate()
                         notifyItemChanged(position)
                     }
                 }
             }
         }
     }
-
-    private fun isActivated(streamPass: StreamPass): Boolean {
-        return streamPass.activeTime != Long.MIN_VALUE
-    }
-
-    private fun isExpired(time: Long): Boolean {
-        return time < System.currentTimeMillis()
-    }
-
 }

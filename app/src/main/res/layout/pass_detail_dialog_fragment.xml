@@ -13,69 +13,80 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_vertical|center_horizontal"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"
         android:background="@android:color/background_light">
 
         <TextView
             android:id="@+id/title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:layout_constraintTop_toTopOf="parent"
+            android:text="Pass Detail"
+            android:textSize="24sp"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            android:text="Pass Detail"/>
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/serial_number_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:layout_constraintTop_toBottomOf="@id/title"
+            android:text="Serial number: "
+            android:textSize="18sp"
             app:layout_constraintLeft_toLeftOf="parent"
-            android:text="Serial number: "/>
+            app:layout_constraintTop_toBottomOf="@id/title" />
 
         <TextView
             android:id="@+id/serial_number"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:layout_constraintTop_toBottomOf="@id/title"
+            android:layout_marginLeft="10dp"
+            android:text="@{viewModel.serialNumber}"
+            android:textSize="18sp"
             app:layout_constraintLeft_toRightOf="@id/serial_number_title"
-            app:layout_constraintRight_toRightOf="parent"
-            android:text="@{viewModel.serialNumber}"/>
+            app:layout_constraintTop_toBottomOf="@id/title"
+            tools:text="@tools:sample/us_phones" />
 
         <TextView
             android:id="@+id/insertion_date_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:layout_constraintTop_toBottomOf="@id/serial_number_title"
+            android:text="Insertion data: "
+            android:textSize="18sp"
             app:layout_constraintLeft_toLeftOf="parent"
-            android:text="Insertion data: "/>
+            app:layout_constraintTop_toBottomOf="@id/serial_number_title" />
 
         <TextView
             android:id="@+id/insertion_date"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:text="@{viewModel.insertionDateString}"
+            android:textSize="18sp"
+            app:layout_constraintStart_toStartOf="@id/serial_number"
             app:layout_constraintTop_toBottomOf="@id/serial_number_title"
-            app:layout_constraintLeft_toRightOf="@id/insertion_date_title"
-            app:layout_constraintRight_toRightOf="parent"
-            android:text="@{viewModel.insertionDateString}"/>
+            tools:text="@tools:sample/date/mmddyy" />
 
         <TextView
             android:id="@+id/pass_status_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:layout_constraintTop_toBottomOf="@id/insertion_date_title"
+            android:text="Pass Status: "
+            android:textSize="18sp"
             app:layout_constraintLeft_toLeftOf="parent"
-            android:text="Pass Status: "/>
+            app:layout_constraintTop_toBottomOf="@id/insertion_date_title" />
 
 
         <TextView
             android:id="@+id/pass_status"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:text="@{viewModel.passStatusString}"
+            android:textSize="18sp"
+            app:layout_constraintStart_toStartOf="@id/serial_number"
             app:layout_constraintTop_toBottomOf="@id/insertion_date_title"
-            app:layout_constraintLeft_toRightOf="@id/pass_status_title"
-            app:layout_constraintRight_toRightOf="parent"
-
-            android:text="@{viewModel.passStatusString}"/>
+            tools:text="@tools:sample/full_names" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

@@ -14,8 +14,7 @@ class PassDetailDialogViewModel(private val streamPass: StreamPass) : ViewModel(
     fun getPassStatusString(): String {
         var statusString = ""
         if (streamPass.isActivated()) {
-            statusString = "Activated"
-            statusString += "\nActivation at: ${TimeDisplayUtil.dataTimeFormatter.format(streamPass.activeTime)}"
+            statusString = "Activation at: ${TimeDisplayUtil.dataTimeFormatter.format(streamPass.activeTime)}"
             statusString += "\nExpiration at: ${TimeDisplayUtil.dataTimeFormatter.format(streamPass.expirationTime)}"
         } else {
             statusString = "InActive"
